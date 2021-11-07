@@ -1,0 +1,38 @@
+import {Modal} from "bootstrap";
+
+Modal.create = function () {
+    return $(document.createElement('div')).attr({
+        class: 'modal fade',
+        id: 'exampleModal',
+        tabindex: -1,
+        'aria-labelledby': "exampleModalLabel",
+        'aria-hidden': "true"
+    }).append($(document.createElement('div')).attr({class: 'modal-dialog'})
+        .append($(document.createElement('div')).attr({class: 'modal-content'})
+            .append($(document.createElement('div')).attr({class: 'modal-header'})
+                .append($(document.createElement('h5')).attr({class: 'modal-title'}))
+                .append($(document.createElement('button')).attr({
+                        type: 'button',
+                        class: 'btn-close',
+                        'data-bs-dismiss': "modal",
+                        'aria-label': "Close"
+                    })
+                )
+            )
+            .append($(document.createElement('div')).attr({class: 'modal-body'}))
+            .append($(document.createElement('div')).attr({class: 'modal-footer'}))
+        )
+    );
+}
+
+Modal.prototype.setTitle = function (title) {
+    $(this._element).find('.modal-title').html(title);
+}
+Modal.prototype.setBody = function (content) {
+    $(this._element).find('.modal-body').html(content);
+}
+Modal.prototype.setFooter = function (content) {
+    $(this._element).find('.modal-footer').html(content);
+}
+
+export default Modal
